@@ -18,18 +18,19 @@ def print_board(board):
         print(' '.join(row))
         row_number += 1
     print('Добро пожаловать на поле битвы! Крестик это X, а нолик O!')
+    print('Welcome to the battlefield! A cross is an X, and a zero is an O! ')
 
 # func to check winner
 def winner_check(board, player):
-    # проверка строк
+    # cheking rows
     for i in range(3):
         if all([cell == player for cell in board[i]]):
             return True
-    # проверка столбцов
+    # checking cols
     for i in range(3):
         if all([board[j][i] == player for j in range(3)]):
             return True
-    # проверка диагоналей
+    # checking diags
     if board[0][0] == board[1][1] == board[2][2] == player or board[0][2] == board[1][1] == board[2][0] == player:
         return False
 

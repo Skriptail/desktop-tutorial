@@ -4,21 +4,26 @@ board = [
     ["-", "-", "-"],
     ["-", "-", "-"]
 ]
+# greetings :)
+def greetings():
+    print('Добро пожаловать на поле битвы! \0_0/')
+    print('Welcome to the battlefield! \0_0/')
 # func to print board
 def print_board(board):
+    # printing number of cols
     print('  ', end='')
     for num in range(0, len(board[0])):
         print(num, end=' ')
     print()
 
-    # печать номера строки и поле боя
+    # printing number of rows and battlefield
     row_number = 0
     for row in board:
         print(row_number, end=' ')
         print(' '.join(row))
         row_number += 1
-    print('Добро пожаловать на поле битвы! Крестик это X, а нолик O!')
-    print('Welcome to the battlefield! A cross is an X, and a zero is an O! ')
+    print('Крестик это X, а нолик O!')
+    print('A cross is an X, and a zero is an O! ')
 
 # func to check winner
 def winner_check(board, player):
@@ -64,5 +69,5 @@ def game():
             print('Эта клетка уже занята(')
     print('Game over')
 
-
+greetings()
 game()

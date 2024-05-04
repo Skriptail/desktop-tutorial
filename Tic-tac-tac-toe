@@ -1,0 +1,67 @@
+# krestiki-noliki!!!
+board = [
+    ["-", "-", "-"],
+    ["-", "-", "-"],
+    ["-", "-", "-"]
+]
+# func to print board
+def print_board(board):
+    print('  ', end='')
+    for num in range(0, len(board[0])):
+        print(num, end=' ')
+    print()
+
+    # печать номера строки и поле боя
+    row_number = 0
+    for row in board:
+        print(row_number, end=' ')
+        print(' '.join(row))
+        row_number += 1
+    print('Добро пожаловать на поле битвы! Крестик это X, а нолик O!')
+
+# func to check winner
+def winner_check(board, player):
+    # проверка строк
+    for i in range(3):
+        if all([cell == player for cell in board[i]]):
+            return True
+    # проверка столбцов
+    for i in range(3):
+        if all([board[j][i] == player for j in range(3)]):
+            return True
+    # проверка диагоналей
+    if board[0][0] == board[1][1] == board[2][2] == player or board[0][2] == board[1][1] == board[2][0] == player:
+        return False
+
+# func for making a move
+def get_move():
+    while True:
+        move = input('Введите координаты вашего хода(строку и столбец): ')
+        row, col = map(int, move.split())
+        if 0 <= row < 3 and 0 <= col < 3:
+            return row, col
+        else:
+            print('Ход неверный, введите корректные координаты')
+
+# launcher
+def game():
+    board = [['-' for _ in range(3)] for _ in range(3)]
+    players = ['x', 'o']
+    current_player = 0
+
+    for _ in range(9):
+        print_board(board)
+        row, col = get_move()
+        if board[row][col] == '-':
+            board[row][col] = players[current_player]
+            if winner_check(board, players[current_player]):
+                print_board(board)
+                print(f'Игрок {players[current_player]} одержал победу!')
+                return
+            current_player = 1 - current_player
+        else:
+            print('Эта клетка уже занята(')
+    print('Game over')
+
+
+game()
